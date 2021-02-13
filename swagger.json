@@ -10,6 +10,21 @@
         }
     },
     "paths" : {
+        "health" : {
+            "get" : {
+                "tags" : [
+                    "Health"
+                ],
+                "summary" : "Health check.",
+                "description" : "Health check.",
+                "operationId" : "health",
+                "responses" : {
+                    "200" : {
+                        "description": "Health check"
+                    }
+                }
+            }
+        },
         "/projects" : {
             "get" : {
                 "tags" : [
@@ -173,7 +188,6 @@
                 }
             }
         },
-
         "/projects/{id}/tasks" : {
             "get" : {
                 "tags" : [
@@ -206,6 +220,198 @@
                     },
                     "400" : {
                         "description": "Something went wrong"
+                    }
+                }
+            }
+        },
+        "/tasks" : {
+            "get" : {
+                "tags" : [
+                    "Tasks"
+                ],
+                "summary" : "Get All Tasks",
+                "description" : "Get all tasks from database.",
+                "operationId" : "getAllTasks",
+                "responses" : {
+                    "200" : {
+                        "description": "List of tasks",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Task"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    }
+                }
+            },
+            "post" : {
+                "tags" : [
+                    "Tasks"
+                ],
+                "summary" : "Create new task",
+                "description" : "Create new task.",
+                "operationId" : "createNewTask",
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "$ref": "#/components/schemas/Task"
+                        }
+                      }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description": "Task created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Task"
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    }
+                }
+            }
+        },
+        "/tasks/{id}" : {
+            "get" : {
+                "tags" : [
+                    "Tasks"
+                ],
+                "summary" : "Get a task by id.",
+                "description" : "Get a task by id.",
+                "operationId" : "getTaskById",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the task.",
+                      "required": true
+                    }
+                ],
+                "responses" : { 
+                    "200" : {
+                        "description" : "Task found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Task"
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "404" : {
+                        "description": "Task not found."
+                    }
+                }
+            },
+            "put" : {
+                "tags" : [
+                    "Tasks"
+                ],
+                "summary" : "Update task.",
+                "description" : "Update task.",
+                "operationId" : "updateTask",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the task.",
+                      "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "$ref": "#/components/schemas/Task"
+                        }
+                      }
+                    }
+                },
+                "responses" : { 
+                    "204" : {
+                        "description" : "Task updated"
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "404" : {
+                        "description": "Task not found."
+                    }
+                }
+            },
+            "delete" : {
+                "tags" : [
+                    "Tasks"
+                ],
+                "summary" : "Delete a task by id.",
+                "description" : "Delete a task by id.",
+                "operationId" : "deleteTask",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the task.",
+                      "required": true
+                    }
+                ],
+                "responses" : { 
+                    "204" : {
+                        "description" : "Task deleted"
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "404" : {
+                        "description": "Task not found."
+                    }
+                }
+            }
+        },
+        "/tasks/{id}/finish" : {
+            "patch" : {
+                "tags" : [
+                    "Tasks"
+                ],
+                "summary" : "Finish a task by id.",
+                "description" : "Finish a task by id.",
+                "operationId" : "finishTask",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the task.",
+                      "required": true
+                    }
+                ],
+                "responses" : { 
+                    "204" : {
+                        "description" : "Task finished."
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "422" : {
+                        "description": "Task is already finished."
                     }
                 }
             }
@@ -308,6 +514,10 @@
         {
             "name" : "Tasks",
             "description" : "Tasks endpoints"
+        },
+        {
+            "name" : "Health",
+            "description" : "Health check."
         }
     ]
 }

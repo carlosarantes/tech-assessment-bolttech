@@ -55,8 +55,7 @@ tasks:
 
 
 
-        // routes.get('/projects/:id/tasks', ProjectController.findTaskByProjectId);
-
+ 
 
 
 /*
@@ -64,17 +63,7 @@ tasks:
         routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate)
         routes.get('/users/:id/projects', UserController.findProjectsByUserId);
 
-
-        
-        
-        routes.get('/tasks', TaskController.findAll);
-        routes.post('/tasks', TaskMiddleware.validateBeforeSave, TaskController.create);
-        routes.get('/tasks/:id', TaskController.findById);
-        routes.put('/tasks/:id', TaskMiddleware.validateBeforeSave, TaskController.update);
-        routes.delete('/tasks/:id', TaskController.delete);
-
-
-        routes.patch('/tasks/:id', TaskMiddleware.validateBeforeFinish, TaskController.finish);
+        routes.patch('/tasks/:id/finish', TaskMiddleware.validateBeforeFinish, TaskController.finish);
         
   */      
 
