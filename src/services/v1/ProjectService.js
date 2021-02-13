@@ -30,7 +30,7 @@ class ProjectService {
     }
 
     async findByUserId(user_id) {
-        return await Project.findAll({ where : { user_id } });
+        return await Project.findAll({ where : { user_id : user_id } });
     }
 
     async create(body) {

@@ -8,7 +8,7 @@ class UserController {
             return res.json({ projects });
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }

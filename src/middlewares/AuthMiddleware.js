@@ -24,10 +24,10 @@ class AuthMiddleware {
             return res.status(422).json({ errors });
         }
 
-        next();
+        return next();
     }
 
-    async validateBeforeLogin (req, res) {
+    async validateBeforeLogin (req, res, next) {
         const { email, password } = req.body;
         const errors = [];
 
@@ -48,7 +48,7 @@ class AuthMiddleware {
             return res.status(422).json({ errors });
         }
 
-        next();
+        return next();
     }
 }
 

@@ -8,7 +8,7 @@ class TaskController {
             return res.json({ tasks });
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
@@ -19,7 +19,7 @@ class TaskController {
             return res.status(201).json({ task });
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
@@ -31,7 +31,7 @@ class TaskController {
             return res.status(201).json({ task });
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
@@ -43,7 +43,7 @@ class TaskController {
             return res.status(204);
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
@@ -55,7 +55,7 @@ class TaskController {
             return res.status(204);
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
@@ -67,7 +67,7 @@ class TaskController {
             return res.json({ tasks });
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
@@ -79,7 +79,7 @@ class TaskController {
             return res.status(204);
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }

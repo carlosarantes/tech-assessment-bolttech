@@ -15,7 +15,7 @@ class TaskService {
         return task;
     }
 
-    async findByProjectId(id) {
+    async findByProjectId(project_id) {
         return await Task.findAll({ where : { project_id } });
     }
 

@@ -13,7 +13,6 @@ const routes = Router();
 
 routes.post('/users/registration', AuthMiddleware.validateBeforeCreate, AuthController.register);
 routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate);
-
 routes.get('/users/:id/projects', UserController.findProjectsByUserId);
 
 routes.get('/projects', ProjectController.findAll);
@@ -27,7 +26,7 @@ routes.get('/tasks', TaskController.findAll);
 routes.post('/tasks', TaskMiddleware.validateBeforeSave, TaskController.create);
 routes.get('/tasks/:id', TaskController.findById);
 routes.put('/tasks/:id', TaskMiddleware.validateBeforeSave, TaskController.update);
-routes.patch('/tasks/:id', TaskMiddleware.validateBeforeFinish, TaskController.finish);
-routes.delete('/tasks/:id/finish', TaskController.delete);
+routes.patch('/tasks/:id/finish', TaskMiddleware.validateBeforeFinish, TaskController.finish);
+routes.delete('/tasks/:id', TaskController.delete);
 
 module.exports = routes;

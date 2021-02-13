@@ -7,7 +7,7 @@ class AuthController {
             return res.status(201).json({ message : "Registration completed successfully.", user, token })
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }   
@@ -18,7 +18,7 @@ class AuthController {
             return res.json({ user, token })
         } catch (e) {
             const code = e.statusCode || 400;
-            const message = e.message || "Something when wrong";
+            const message = e.message || "Something went wrong";
             return res.status(code).json({ message });
         }
     }
