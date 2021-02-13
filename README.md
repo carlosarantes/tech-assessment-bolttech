@@ -24,3 +24,74 @@ tasks:
     created_at
     finished_at
     project_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // routes.get('/projects/:id', ProjectController.findById);
+        // routes.put('/projects/:id', ProjectMiddleware.validateBeforeSave, ProjectController.update);
+        // routes.delete('/projects/:id', ProjectController.delete);
+
+
+        // routes.get('/projects/:id/tasks', ProjectController.findTaskByProjectId);
+
+
+
+/*
+        routes.post('/users/registration', AuthMiddleware.validateBeforeCreate, AuthController.register);
+        routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate);
+        
+        routes.get('/users/:id/projects', UserController.findProjectsByUserId);
+        
+        routes.get('/tasks', TaskController.findAll);
+        routes.post('/tasks', TaskMiddleware.validateBeforeSave, TaskController.create);
+        routes.get('/tasks/:id', TaskController.findById);
+        routes.put('/tasks/:id', TaskMiddleware.validateBeforeSave, TaskController.update);
+        routes.patch('/tasks/:id', TaskMiddleware.validateBeforeFinish, TaskController.finish);
+        routes.delete('/tasks/:id', TaskController.delete);
+  */      
+
+
+
+//{
+    //summary
+    //description
+    //get
+    //put
+    //post
+    //delete
+    //options
+    //head
+    //patch
+    //trace
+    //servers
+    //parameters
+//}

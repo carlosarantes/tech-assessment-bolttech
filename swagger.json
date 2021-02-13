@@ -9,13 +9,120 @@
             "email" : "carlosaugusto.a@outlook.com"
         }
     },
-    "paths" : [
-{
-    summary
-    description
-    get
-}
-    ],  	
+    "paths" : {
+        "/projects" : {
+            "get" : {
+                "tags" : [
+                    "Projects"
+                ],
+                "summary" : "Get All Projects",
+                "description" : "Get all projects from database.",
+                "operationId" : "getAllProjects",
+                "responses" : {
+                    "200" : {
+                        "description": "List of projects",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Project"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    }
+                }
+            },
+            "post" : {
+                "tags" : [
+                    "Projects"
+                ],
+                "summary" : "Create new project",
+                "description" : "Create new project.",
+                "operationId" : "createNewProject",
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "$ref": "#/components/schemas/Project"
+                        }
+                      }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description": "Project created",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    }
+                }
+            }
+        },
+        "/projects/{id}" : {
+            "get" : {
+                "tags" : [
+                    "Projects"
+                ],
+                "summary" : "Get a project by id.",
+                "description" : "Get a project by id.",
+                "operationId" : "getProjectById",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the project.",
+                      "required": true
+                    }
+                ]
+            },
+            "put" : {
+                "tags" : [
+                    "Projects"
+                ],
+                "summary" : "Update project.",
+                "description" : "Update project.",
+                "operationId" : "updateProject",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the project.",
+                      "required": true
+                    }
+                ]
+            },
+            "delete" : {
+                "tags" : [
+                    "Projects"
+                ],
+                "summary" : "Delete a project by id.",
+                "description" : "Delete a project by id.",
+                "operationId" : "deleteProject",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the project.",
+                      "required": true
+                    }
+                ]
+            }
+        }
+    },  	
     "components" : {
         "schemas" : {
             "User" : {
