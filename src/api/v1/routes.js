@@ -1,12 +1,15 @@
 const { Router } = require("express");
+
+const AuthMiddleware = require("../../middlewares/AuthMiddleware");
+
 const TaskController = require("../../controllers/v1/TaskController");
 const ProjectController = require("../../controllers/v1/ProjectController");
 const AuthController = require("../../controllers/v1/AuthController");
 
 const routes = Router();
 
-routes.post('/users/registration', AuthController.register);
-routes.post('/users/login', AuthController.authenticate);
+routes.post('/users/registration', AuthMiddleware.validateBeforeCreate, AuthController.register);
+routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate);
 
 routes.get('/projects', ProjectController.findAll);
 routes.post('/projects', ProjectController.create);

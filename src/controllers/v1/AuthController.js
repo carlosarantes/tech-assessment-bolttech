@@ -1,22 +1,26 @@
-const User = require("../../models/User");
+const UserService = require("../../services/v1/UserService");
 
 class AuthController {
     async register(req, res) {
         try {
-            const { name, email, password } = req.body;
-            console.log(name, email, password);
-            const user = await User.create({ name, email, password });
-            return res.json({ user });
+            const { user, token } = await UserService.register(req.body);
+            return res.status(201).json({ message : "Registration completed successfully.", user, token })
         } catch (e) {
-            console.log(e);
-            return res.status(400).json({ message : e.message });
+            const code = e.statusCode || 400;
+            const message = e.message || "Something when wrong";
+            return res.status(code).json({ message });
         }
-
-
     }   
 
     async authenticate(req, res) {
-
+        try {
+            const { user, token } = await UserService.login(req.body);
+            return res.json({ user, token })
+        } catch (e) {
+            const code = e.statusCode || 400;
+            const message = e.message || "Something when wrong";
+            return res.status(code).json({ message });
+        }
     }
 }
 

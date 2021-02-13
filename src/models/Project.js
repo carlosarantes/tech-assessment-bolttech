@@ -1,3 +1,4 @@
+const { model } = require("mongoose");
 const { Model, DataTypes } = require("sequelize");
 
 class Project extends Model {
@@ -8,6 +9,10 @@ class Project extends Model {
         }, {
             sequelize
         })
+    }
+
+    static associate(models) {
+        this.belongsTo(models.User, { foreignKey: 'user_id' , as: 'user' })
     }
 }
 
