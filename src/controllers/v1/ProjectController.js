@@ -1,4 +1,5 @@
 const ProjectService = require("../../services/v1/ProjectService");
+const TaskService = require("../../services/v1/TaskService");
 
 class ProjectController {
 
@@ -41,6 +42,18 @@ class ProjectController {
             const { userId } = req.params;
             const project = await ProjectService.findByUserId(userId);
             return res.json({ project });
+        } catch (e) {
+            const code = e.statusCode || 400;
+            const message = e.message || "Something when wrong";
+            return res.status(code).json({ message });
+        }
+    }
+
+    async findTaskByProjectId(req, res) {
+        try {
+            const { id } = req.params;
+            const tasks = await TaskService.findByProjectId(id);
+            return res.json({ tasks });
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something when wrong";
