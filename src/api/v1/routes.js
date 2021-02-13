@@ -1,15 +1,19 @@
 const { Router } = require("express");
 const TaskController = require("../../controllers/v1/TaskController");
+const ProjectController = require("../../controllers/v1/ProjectController");
+const AuthController = require("../../controllers/v1/AuthController");
 
 const routes = Router();
 
-routes.get('/projects', TaskController.findAll);
-routes.post('/projects', TaskController.create);
-routes.get('/projects/:id', TaskController.findById);
-routes.put('/projects/:id', TaskController.update);
-routes.delete('/projects/:id', TaskController.delete);
-routes.get('/projects/by-user-id/:userId', TaskController.findByUserId);
+routes.post('/users/registration', AuthController.register);
+routes.post('/users/login', AuthController.authenticate);
 
+routes.get('/projects', ProjectController.findAll);
+routes.post('/projects', ProjectController.create);
+routes.get('/projects/:id', ProjectController.findById);
+routes.put('/projects/:id', ProjectController.update);
+routes.delete('/projects/:id', ProjectController.delete);
+routes.get('/projects/by-user-id/:userId', ProjectController.findByUserId);
 
 routes.get('/tasks', TaskController.findAll);
 routes.post('/tasks', TaskController.create);

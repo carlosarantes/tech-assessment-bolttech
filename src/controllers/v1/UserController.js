@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 
 class UserController {
 
@@ -27,4 +26,4 @@ class UserController {
     }
 }
 
-export default new UserController();
+module.exports = new UserController();

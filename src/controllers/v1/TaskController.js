@@ -20,9 +20,9 @@ class TaskController {
         
     }
 
-    async findByUserId(req, res) {
+    async findByProjectId(req, res) {
         
     }
 }
 
-export default new TaskController();
+module.exports = new TaskController();
