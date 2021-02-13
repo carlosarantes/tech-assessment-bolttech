@@ -40,7 +40,7 @@ class TaskController {
         try {
             const { id } = req.params;
             await TaskService.update(id, req.body);
-            return res.status(204);
+            return res.status(204).send("");
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something went wrong";
@@ -52,7 +52,7 @@ class TaskController {
         try {
             const { id } = req.params;
             await TaskService.delete(id);
-            return res.status(204);
+            return res.status(204).send("");
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something went wrong";
@@ -76,7 +76,7 @@ class TaskController {
         try {
             const { id } = req.params;
             await TaskService.finish(id);
-            return res.status(204);
+            return res.status(200).json({ "message" : "Task successfully finished. "});
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something went wrong";

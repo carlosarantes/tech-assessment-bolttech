@@ -119,6 +119,9 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                        "bearerAuth" : []
+                }],
                 "responses" : {
                     "200" : {
                         "description": "List of projects",
@@ -147,6 +150,9 @@
                 "summary" : "Get All Projects",
                 "description" : "Get all projects from database.",
                 "operationId" : "getAllProjects",
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : {
                     "200" : {
                         "description": "List of projects",
@@ -183,6 +189,9 @@
                       }
                     }
                 },
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : {
                     "201" : {
                         "description": "Project created",
@@ -217,6 +226,9 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "200" : {
                         "description" : "Project found",
@@ -262,6 +274,9 @@
                       }
                     }
                 },
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "204" : {
                         "description" : "Project updated"
@@ -289,6 +304,9 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "204" : {
                         "description" : "Project deleted"
@@ -318,6 +336,9 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "200" : {
                         "description" : "Tasks found",
@@ -346,6 +367,9 @@
                 "summary" : "Get All Tasks",
                 "description" : "Get all tasks from database.",
                 "operationId" : "getAllTasks",
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : {
                     "200" : {
                         "description": "List of tasks",
@@ -382,6 +406,9 @@
                       }
                     }
                 },
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : {
                     "201" : {
                         "description": "Task created",
@@ -416,6 +443,9 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "200" : {
                         "description" : "Task found",
@@ -461,6 +491,9 @@
                       }
                     }
                 },
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "204" : {
                         "description" : "Task updated"
@@ -488,6 +521,9 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
                     "204" : {
                         "description" : "Task deleted"
@@ -517,8 +553,11 @@
                       "required": true
                     }
                 ],
+                "security": [{
+                    "bearerAuth" : []
+                }],
                 "responses" : { 
-                    "204" : {
+                    "200" : {
                         "description" : "Task finished."
                     },
                     "400" : {
@@ -726,11 +765,15 @@
                     }
                 }
             }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }    
         }
     },
-    "security" : [
-       
-    ],
     "tags" : [
         {
             "name" : "Users",

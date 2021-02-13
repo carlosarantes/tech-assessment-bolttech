@@ -13,20 +13,20 @@ const routes = Router();
 
 routes.post('/users/registration', AuthMiddleware.validateBeforeCreate, AuthController.register);
 routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate);
-routes.get('/users/:id/projects', UserController.findProjectsByUserId);
+routes.get('/users/:id/projects', AuthMiddleware.validateToken, UserController.findProjectsByUserId);
 
-routes.get('/projects', ProjectController.findAll);
-routes.post('/projects', ProjectMiddleware.validateBeforeSave, ProjectController.create);
-routes.get('/projects/:id', ProjectController.findById);
-routes.get('/projects/:id/tasks', ProjectController.findTaskByProjectId);
-routes.put('/projects/:id', ProjectMiddleware.validateBeforeSave, ProjectController.update);
-routes.delete('/projects/:id', ProjectController.delete);
+routes.get('/projects', AuthMiddleware.validateToken, ProjectController.findAll);
+routes.post('/projects', AuthMiddleware.validateToken, ProjectMiddleware.validateBeforeSave, ProjectController.create);
+routes.get('/projects/:id', AuthMiddleware.validateToken, ProjectController.findById);
+routes.get('/projects/:id/tasks', AuthMiddleware.validateToken, ProjectController.findTaskByProjectId);
+routes.put('/projects/:id', AuthMiddleware.validateToken, ProjectMiddleware.validateBeforeSave, ProjectController.update);
+routes.delete('/projects/:id', AuthMiddleware.validateToken, ProjectController.delete);
 
-routes.get('/tasks', TaskController.findAll);
-routes.post('/tasks', TaskMiddleware.validateBeforeSave, TaskController.create);
-routes.get('/tasks/:id', TaskController.findById);
-routes.put('/tasks/:id', TaskMiddleware.validateBeforeSave, TaskController.update);
-routes.patch('/tasks/:id/finish', TaskMiddleware.validateBeforeFinish, TaskController.finish);
-routes.delete('/tasks/:id', TaskController.delete);
+routes.get('/tasks', AuthMiddleware.validateToken, TaskController.findAll);
+routes.post('/tasks', AuthMiddleware.validateToken, TaskMiddleware.validateBeforeSave, TaskController.create);
+routes.get('/tasks/:id', AuthMiddleware.validateToken, TaskController.findById);
+routes.put('/tasks/:id', AuthMiddleware.validateToken, TaskMiddleware.validateBeforeSave, TaskController.update);
+routes.patch('/tasks/:id/finish', AuthMiddleware.validateToken, TaskMiddleware.validateBeforeFinish, TaskController.finish);
+routes.delete('/tasks/:id', AuthMiddleware.validateToken, TaskController.delete);
 
 module.exports = routes;

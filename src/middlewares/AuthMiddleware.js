@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+const authConfig = require("../config/auth.json");
+
 class AuthMiddleware {
     async validateBeforeCreate(req, res, next) {
         const { name, email, password } = req.body;
@@ -49,6 +52,30 @@ class AuthMiddleware {
         }
 
         return next();
+    }
+
+    validateToken(req, res, next) {
+        const authHeader = req.headers.authorization;
+        if (!authHeader) {
+            return res.status(401).send({ "error" : "No token provided." });
+        }
+
+        const parts = authHeader.split(' ');
+        if(parts.length !== 2) {
+            return res.status(401).send({ "error" : "Token has some errors." });
+        }
+
+        const [ scheme, token ] = parts;
+        if(!/^Bearer$/i.test(scheme)) {
+            return res.status(401).send({ "error" : "Malformatted token." });
+        }
+
+        jwt.verify(token, authConfig.secret, (err, decoded) => {
+            if (err) return res.status(401).send({ "error" : "Invalid token." });
+
+            req.body.userId = decoded.id;
+            return next();
+        });
     }
 }
 

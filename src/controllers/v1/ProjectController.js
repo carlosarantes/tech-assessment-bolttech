@@ -65,7 +65,7 @@ class ProjectController {
         try {
             const { id } = req.params;
             await ProjectService.update(id, req.body);
-            return res.status(204);
+            return res.status(204).send("");
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something went wrong";
@@ -77,7 +77,7 @@ class ProjectController {
         try {
             const { id } = req.params;
             await ProjectService.delete(id);
-            return res.status(204);
+            return res.status(204).send("");
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something went wrong";
