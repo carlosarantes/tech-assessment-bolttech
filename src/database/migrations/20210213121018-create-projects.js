@@ -13,10 +13,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      description : {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
       user_id : {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -39,11 +35,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    return await queryInterface.dropTable('projects');
   }
 };

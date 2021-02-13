@@ -52,7 +52,7 @@ class ProjectController {
         try {
             const { id } = req.params;
             await ProjectService.update(id, req.body);
-            return res.status(204).json({ message : "teste" });
+            return res.status(204);
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something when wrong";

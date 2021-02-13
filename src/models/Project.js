@@ -4,8 +4,7 @@ const { Model, DataTypes } = require("sequelize");
 class Project extends Model {
     static init(sequelize) {
         super.init({
-            name: DataTypes.STRING,
-            description: DataTypes.STRING
+            name: DataTypes.STRING
         }, {
             sequelize
         })
@@ -13,6 +12,7 @@ class Project extends Model {
 
     static associate(models) {
         this.belongsTo(models.User, { foreignKey: 'user_id' , as: 'user' })
+        this.hasMany(models.Project, { foreignKey : 'project_id', as: 'tasks' })
     }
 }
 

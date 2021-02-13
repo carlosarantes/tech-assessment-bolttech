@@ -4,7 +4,7 @@ const HttpError = require("../../errors/HttpError");
 class TaskService {
 
     async findAll() {
-        return await Project.findAll();
+        return await Task.findAll();
     }
 
     async findById(id) {
