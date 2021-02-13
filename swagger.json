@@ -87,7 +87,26 @@
                       "description": "Id of the project.",
                       "required": true
                     }
-                ]
+                ],
+                "responses" : { 
+                    "200" : {
+                        "description" : "Project found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "404" : {
+                        "description": "Project not found."
+                    }
+                }
             },
             "put" : {
                 "tags" : [
@@ -103,7 +122,28 @@
                       "description": "Id of the project.",
                       "required": true
                     }
-                ]
+                ],
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "$ref": "#/components/schemas/Project"
+                        }
+                      }
+                    }
+                },
+                "responses" : { 
+                    "204" : {
+                        "description" : "Project updated"
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "404" : {
+                        "description": "Project not found."
+                    }
+                }
             },
             "delete" : {
                 "tags" : [
@@ -119,7 +159,55 @@
                       "description": "Id of the project.",
                       "required": true
                     }
-                ]
+                ],
+                "responses" : { 
+                    "204" : {
+                        "description" : "Project deleted"
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    },
+                    "404" : {
+                        "description": "Project not found."
+                    }
+                }
+            }
+        },
+
+        "/projects/{id}/tasks" : {
+            "get" : {
+                "tags" : [
+                    "Projects"
+                ],
+                "summary" : "Get tasks by project id.",
+                "description" : "Get tasks by project id.",
+                "operationId" : "projectTasks",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "Id of the project.",
+                      "required": true
+                    }
+                ],
+                "responses" : { 
+                    "200" : {
+                        "description" : "Tasks found",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Task"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
+                    }
+                }
             }
         }
     },  	
@@ -176,7 +264,7 @@
                     }
                 }
             },
-            "Tasks" : {
+            "Task" : {
                 "type": "object",
                 "required": [
                     "description",
