@@ -38,8 +38,8 @@ class ProjectController {
 
     async findByUserId(req, res) {
         try {
-            const { user_id } = req.params;
-            const project = await ProjectService.findByUserId(user_id);
+            const { userId } = req.params;
+            const project = await ProjectService.findByUserId(userId);
             return res.json({ project });
         } catch (e) {
             const code = e.statusCode || 400;
@@ -50,7 +50,9 @@ class ProjectController {
 
     async update(req, res) {
         try {
-            
+            const { id } = req.params;
+            await ProjectService.update(id, req.body);
+            return res.status(204).json({ message : "teste" });
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something when wrong";
@@ -60,7 +62,9 @@ class ProjectController {
 
     async delete(req, res) {
         try {
-            
+            const { id } = req.params;
+            await ProjectService.delete(id);
+            return res.status(204);
         } catch (e) {
             const code = e.statusCode || 400;
             const message = e.message || "Something when wrong";

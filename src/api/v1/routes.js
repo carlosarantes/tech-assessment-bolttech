@@ -16,7 +16,7 @@ routes.post('/projects', ProjectController.create);
 routes.get('/projects/:id', ProjectController.findById);
 routes.put('/projects/:id', ProjectController.update);
 routes.delete('/projects/:id', ProjectController.delete);
-routes.get('/projects/by-user-id/:userId', ProjectController.findByUserId);
+routes.get('/projects/by-user/:userId', ProjectController.findByUserId);
 
 routes.get('/tasks', TaskController.findAll);
 routes.post('/tasks', TaskController.create);
