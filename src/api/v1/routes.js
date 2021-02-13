@@ -27,6 +27,7 @@ routes.get('/tasks', TaskController.findAll);
 routes.post('/tasks', TaskMiddleware.validateBeforeSave, TaskController.create);
 routes.get('/tasks/:id', TaskController.findById);
 routes.put('/tasks/:id', TaskMiddleware.validateBeforeSave, TaskController.update);
+routes.patch('/tasks/:id', TaskMiddleware.validateBeforeFinish, TaskController.finish);
 routes.delete('/tasks/:id', TaskController.delete);
 
 module.exports = routes;

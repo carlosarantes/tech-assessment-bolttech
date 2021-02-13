@@ -1,0 +1,118 @@
+{
+    "openapi" : "3.0.0",
+    "info" : {
+        "title" : "iProject Tasks",   
+        "description" : "Api designed to manage projects and tasks with their users",
+        "version" : "1.0",
+        "contact" : {
+            "name" : "Carlos Augusto Arantes",
+            "email" : "carlosaugusto.a@outlook.com"
+        }
+    },
+    "paths" : [
+{
+    summary
+    description
+    get
+}
+    ],  	
+    "components" : {
+        "schemas" : {
+            "User" : {
+                "type": "object",
+                "required": [
+                    "name",
+                    "email",
+                    "password"
+                ],
+                "properties" : {
+                    "name" : {
+                        "type": "string",
+                        "example" : "Bryan Watson"  
+                    }, 
+                    "email" : {
+                        "type": "string",
+                        "example" : "bryan.watson@gmail.com"  
+                    }, 
+                    "password" : {
+                        "type": "string",
+                        "example" : "10203040" 
+                    },
+                    "created_at" : {
+                        "type": "string"
+                    },
+                    "updated_at" : {
+                        "type": "string"
+                    }
+                }
+            },
+            "Project" : {
+                "type": "object",
+                "required": [
+                    "name",
+                    "user_id"
+                ],
+                "properties" : {
+                    "name" : {
+                        "type": "string",
+                        "example" : "Bryan Watson"  
+                    }, 
+                    "user_id" : {
+                        "type": "integer",
+                        "example" : 1  
+                    },
+                    "created_at" : {
+                        "type": "string"
+                    },
+                    "updated_at" : {
+                        "type": "string"
+                    }
+                }
+            },
+            "Tasks" : {
+                "type": "object",
+                "required": [
+                    "description",
+                    "project_id"
+                ],
+                "properties" : { 
+                    "description" : {
+                        "type": "string",
+                        "example" : "I must do the dishes"
+                    },
+                    "project_id" : {
+                        "type": "integer",
+                        "example" : 1
+                    },
+                    "finished_at" : {
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
+                    },
+                    "created_at" : {
+                        "type": "string"
+                    },
+                    "updated_at" : {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "security" : [
+       
+    ],
+    "tags" : [
+        {
+            "name" : "Users",
+            "description" : "Users endpoints"
+        },
+        {
+            "name" : "Projects",
+            "description" : "Projects endpoints"
+        },
+        {
+            "name" : "Tasks",
+            "description" : "Tasks endpoints"
+        }
+    ]
+}

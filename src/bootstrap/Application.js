@@ -10,11 +10,18 @@ class Application {
         this.app = express();
         this.middlewares();
         this.routes();
+        this.configSwagger();
     }
 
     middlewares() {       
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.json());
+    }
+
+    configSwagger() {
+        const swaggerUi = require('swagger-ui-express');
+        const swaggerJson = require("../../swagger.json");
+        this.app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerJson));
     }
 
     routes(){

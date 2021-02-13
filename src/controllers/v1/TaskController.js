@@ -71,6 +71,18 @@ class TaskController {
             return res.status(code).json({ message });
         }
     }
+
+    async finish(req, res) {
+        try {
+            const { id } = req.params;
+            await TaskService.finish(id);
+            return res.status(204);
+        } catch (e) {
+            const code = e.statusCode || 400;
+            const message = e.message || "Something when wrong";
+            return res.status(code).json({ message });
+        }
+    }
 }
 
 module.exports = new TaskController();
