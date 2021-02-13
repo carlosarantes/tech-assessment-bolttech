@@ -71,9 +71,12 @@ class AuthMiddleware {
         }
 
         jwt.verify(token, authConfig.secret, (err, decoded) => {
-            if (err) return res.status(401).send({ "error" : "Invalid token." });
+            if (err) {
+                const message = err.message == 'jwt expired' ? "Your token has expired." : "Your token is invalid.";
+                return res.status(401).send({ "error" : message });
+            } 
 
-            req.body.userId = decoded.id;
+            req.headers.userId = decoded.id;
             return next();
         });
     }
