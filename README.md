@@ -61,10 +61,9 @@ tasks:
 /*
         routes.post('/users/registration', AuthMiddleware.validateBeforeCreate, AuthController.register);
         routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate)
-        routes.get('/users/:id/projects', UserController.findProjectsByUserId);
+  
 
-        routes.patch('/tasks/:id/finish', TaskMiddleware.validateBeforeFinish, TaskController.finish);
-        
+         
   */      
 
 

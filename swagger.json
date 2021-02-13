@@ -10,7 +10,7 @@
         }
     },
     "paths" : {
-        "health" : {
+        "/health" : {
             "get" : {
                 "tags" : [
                     "Health"
@@ -21,6 +21,135 @@
                 "responses" : {
                     "200" : {
                         "description": "Health check"
+                    }
+                }
+            }
+        },
+
+
+
+
+
+
+        "/users/registration" : {
+            "post" : {
+                "tags" : [
+                    "Users"
+                ],
+                "summary" : "User registration.",
+                "description" : "User registration.",
+                "operationId" : "userRegistration",
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "$ref": "#/components/examples/UserRegistration"
+                        }
+                      }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description": "User registration was successfully",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/examples/UserRegistrationOk"
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description" : "Something went wrong."
+                    },
+                    "409" : {
+                        "description" : "E-mail provided already in use."
+                    }
+                }
+            }
+        },
+        "/users/login" : {
+            "post" : {
+                "tags" : [
+                    "Users"
+                ],
+                "summary" : "User login.",
+                "description" : "User login.",
+                "operationId" : "userLogin",
+                "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "$ref": "#/components/examples/UserLogin"
+                        }
+                      }
+                    }
+                },
+                "responses" : {
+                    "201" : {
+                        "description": "User authnticated",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/components/examples/UserRegistrationOk"
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description" : "Something went wrong."
+                    },
+                    "401" : {
+                        "description" : "Login failed, invalid credentials."
+                    }
+                }
+            }
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        "/users/:id/projects" : {
+            "get" : {
+                "tags" : [
+                    "Users"
+                ],
+                "summary" : "Get User Projects",
+                "description" : "Get all projects of a user from database.",
+                "operationId" : "getUserProjects",
+                "responses" : {
+                    "200" : {
+                        "description": "List of projects",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Project"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400" : {
+                        "description": "Something went wrong"
                     }
                 }
             }
@@ -64,7 +193,7 @@
                       "application/json": {
                         "schema": {
                           "type": "object",
-                          "$ref": "#/components/schemas/Project"
+                          "$ref": "#/components/examples/ProjectPayload"
                         }
                       }
                     }
@@ -143,7 +272,7 @@
                       "application/json": {
                         "schema": {
                           "type": "object",
-                          "$ref": "#/components/schemas/Project"
+                          "$ref": "#/components/examples/ProjectPayload"
                         }
                       }
                     }
@@ -263,7 +392,7 @@
                       "application/json": {
                         "schema": {
                           "type": "object",
-                          "$ref": "#/components/schemas/Task"
+                          "$ref": "#/components/examples/TaskPayload"
                         }
                       }
                     }
@@ -342,7 +471,7 @@
                       "application/json": {
                         "schema": {
                           "type": "object",
-                          "$ref": "#/components/schemas/Task"
+                          "$ref": "#/components/examples/TaskPayload"
                         }
                       }
                     }
@@ -427,6 +556,10 @@
                     "password"
                 ],
                 "properties" : {
+                    "id" : {
+                        "type": "integer",
+                        "example" : 1  
+                    }, 
                     "name" : {
                         "type": "string",
                         "example" : "Bryan Watson"  
@@ -440,10 +573,12 @@
                         "example" : "10203040" 
                     },
                     "created_at" : {
-                        "type": "string"
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
                     },
                     "updated_at" : {
-                        "type": "string"
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
                     }
                 }
             },
@@ -454,19 +589,25 @@
                     "user_id"
                 ],
                 "properties" : {
+                    "id" : {
+                        "type": "integer",
+                        "example" : 1  
+                    }, 
                     "name" : {
                         "type": "string",
-                        "example" : "Bryan Watson"  
+                        "example" : "New position in Europe"  
                     }, 
                     "user_id" : {
                         "type": "integer",
                         "example" : 1  
                     },
                     "created_at" : {
-                        "type": "string"
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
                     },
                     "updated_at" : {
-                        "type": "string"
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
                     }
                 }
             },
@@ -477,6 +618,10 @@
                     "project_id"
                 ],
                 "properties" : { 
+                    "id" : {
+                        "type": "integer",
+                        "example" : 1  
+                    }, 
                     "description" : {
                         "type": "string",
                         "example" : "I must do the dishes"
@@ -490,10 +635,117 @@
                         "example" : "2020-10-10T10:11:12"
                     },
                     "created_at" : {
-                        "type": "string"
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
                     },
                     "updated_at" : {
-                        "type": "string"
+                        "type": "string",
+                        "example" : "2020-10-10T10:11:12"
+                    }
+                }
+            }
+        },
+
+
+
+
+
+
+
+        "examples" : {
+            "TaskPayload" : {
+                "type": "object",
+                "required": [
+                    "description",
+                    "project_id"
+                ],
+                "properties" : { 
+                    "description" : {
+                        "type": "string",
+                        "example" : "I must do the dishes"
+                    },
+                    "project_id" : {
+                        "type": "integer",
+                        "example" : 1
+                    }
+                }
+            },
+            "ProjectPayload" : {
+                "type": "object",
+                "required": [
+                    "name",
+                    "user_id"
+                ],
+                "properties" : {
+                    "name" : {
+                        "type": "string",
+                        "example" : "New position in Europe"  
+                    }, 
+                    "user_id" : {
+                        "type": "integer",
+                        "example" : 1  
+                    }
+                }
+            },
+            "UserLogin" : {
+                "properties" : { 
+                    "email" : {
+                        "type": "string",
+                        "example" : "bryan.watson@gmail.com"
+                    },
+                    "password" : {
+                        "type": "string",
+                        "example" : "10203040"
+                    } 
+                }
+            },
+            "UserRegistration" : {
+                "properties" : { 
+                    "name" : {
+                        "type": "string",
+                        "example" : "Bryan Watson"
+                    },
+                    "email" : {
+                        "type": "string",
+                        "example" : "bryan.watson@gmail.com"
+                    },
+                    "password" : {
+                        "type": "string",
+                        "example" : "10203040"
+                    } 
+                }
+            },
+
+            "UserRegistrationOk" : {
+                "properties" : { 
+                    "user" : {
+                        "type": "object",
+                        "properties" : {
+                            "id" : {
+                                "type": "integer",
+                                "example" : 1
+                            },
+                            "name" : {
+                                "type": "string",
+                                "example" : "Bryan Watson"
+                            },
+                            "email" : {
+                                "type": "string",
+                                "example" : "bryan.watson@gmail.com"
+                            },
+                            "created_at" : {
+                                "type": "string",
+                                "example" : "2020-02-22T12:44:33"
+                            },
+                            "updated_at" : {
+                                "type": "string",
+                                "example" : "2020-02-22T12:44:33"
+                            }
+                        }
+                    },
+                    "token" : {
+                        "type": "string",
+                        "example" : "hasudhaiushdaishdiuahsdihaishdiu3RDJ"
                     }
                 }
             }
