@@ -1,15 +1,13 @@
 docker run -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql:5.7
 
 
-
+To run the application create the database iprojects if it does not exist with:
 yarn sequelize db:create
 
-yarn sequelize migration:create --name=create-users
-
+Then run the migrations:
 yarn sequelize db:migrate
-npx sequelize db:migrate
 
-yarn sequelize db:migrate:undo
+Then run the project with: npm run start
 
 users:
     name
@@ -25,61 +23,3 @@ tasks:
     created_at
     finished_at
     project_id
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-/*
-        routes.post('/users/registration', AuthMiddleware.validateBeforeCreate, AuthController.register);
-        routes.post('/users/login', AuthMiddleware.validateBeforeLogin, AuthController.authenticate)
-  
-
-         
-  */      
-
-
-
-//{
-    //summary
-    //description
-    //get
-    //put
-    //post
-    //delete
-    //options
-    //head
-    //patch
-    //trace
-    //servers
-    //parameters
-//}

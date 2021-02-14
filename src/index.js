@@ -1,7 +1,7 @@
 const Application = require("./bootstrap/Application");
 
-Application.app.listen(3338, (err) => {
+const port = process.env.PORT || 3333;
+Application.app.listen(port, (err) => {
     if(err) process.exit(0);
-    
-    console.log(`Working on port ${3338}.`)
+    console.log(`Working on port ${port}.`)
 });

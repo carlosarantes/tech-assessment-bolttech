@@ -2,21 +2,6 @@ const Project = require("../../models/Project");
 const User = require("../../models/User");
 const HttpError = require("../../errors/HttpError");
 
-        /*
-        const user_id = 1;
-
-        const user = await User.findByPk(user_id);
-        if(!user) {
-            throw new Error("DEU MERDA");
-        }
-
-        const project = await Project.create({
-            name: "teste",
-            description: "testes",
-            user_id
-        });
-        */
-
 class ProjectService {
 
     async findAll() {
