@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 
 const routes = require("../api/v1/routes");
 
@@ -16,6 +17,7 @@ class Application {
     middlewares() {       
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use(express.json());
+        this.app.use(cors());
     }
 
     configSwagger() {
