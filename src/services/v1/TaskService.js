@@ -29,6 +29,7 @@ class TaskService {
             throw new HttpError("Task already finished.", 422);
         } else {
             user.finished_at = moment().format();
+            await user.save();
         }
     }
 
