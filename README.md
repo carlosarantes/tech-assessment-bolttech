@@ -7,6 +7,7 @@ yarn sequelize db:create
 yarn sequelize migration:create --name=create-users
 
 yarn sequelize db:migrate
+npx sequelize db:migrate
 
 yarn sequelize db:migrate:undo
 
