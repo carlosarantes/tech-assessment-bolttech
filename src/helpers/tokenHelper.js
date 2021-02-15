@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const generateToken = (payload) => {
     return jwt.sign(payload, authConfig.secret, {
-        expiresIn: 3600,
+        expiresIn: 86400,
     });
 }
 

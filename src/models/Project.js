@@ -1,4 +1,3 @@
-const { model } = require("mongoose");
 const { Model, DataTypes } = require("sequelize");
 
 class Project extends Model {
