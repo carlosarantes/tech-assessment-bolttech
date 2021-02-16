@@ -21,7 +21,6 @@ module.exports = {
           model: 'projects',
           key : 'id'
         },
-        onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
       finished_at : {
